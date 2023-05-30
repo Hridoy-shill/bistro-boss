@@ -50,7 +50,7 @@ const NavBar = () => {
             </div>
             <div className="navbar-end">
                 <div className="w-10 rounded-full me-4">
-                    <img src={user?.photoURL} title={user?.displayName} />
+                    <img className='rounded-full' src={user?.photoURL} title={user?.displayName} />
                 </div>
                 {user ?
                     <button onClick={handleLogOut} className="btn">LogOut</button> :

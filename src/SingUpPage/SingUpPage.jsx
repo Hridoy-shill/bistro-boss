@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SingUpImg from '../assets/others/authentication2.png';
 import { FaFacebook, FaGoogle, FaGithub } from 'react-icons/fa';
 import { authContext } from '../Providers/AuthProvider';
@@ -7,8 +7,28 @@ import { authContext } from '../Providers/AuthProvider';
 const SingUpPage = () => {
     const [user, setUser] = useState(null)
     const [error, setError] = useState('')
+    const navigate = useNavigate()
 
-    const { createUser, updateUserProfile } = useContext(authContext);
+
+    const text = (saveUser, reset) => {
+        fetch('http://localhost:5000/newUser', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(saveUser)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId && reset) {
+                    reset();
+                }
+
+            })
+    }
+
+
+    const { createUser, updateUserProfile, createGoogleUser } = useContext(authContext);
 
 
     const handleSingUpData = (event) => {
@@ -26,15 +46,44 @@ const SingUpPage = () => {
                 console.log(newCreatedUser);
                 setUser(newCreatedUser)
                 updateUserProfile(name, userImg)
-                    
-                setError('')
-                form.reset();
+                    .then(() => {
+                        const saveUser = { name, email, userImg }
+                        // fetch('http://localhost:5000/newUser', {
+                        //     method: 'POST',
+                        //     headers: {
+                        //         'content-type': 'application/json'
+                        //     },
+                        //     body: JSON.stringify(saveUser)
+                        // })
+                        //     .then(res => res.json())
+                        //     .then(data => {
+                        //         if (data.insertedId) {
+                        //             form.reset();
+                        //         }
+                        //     })
+                        text(saveUser, form.reset)
+                    })
+                setError('');
+                navigate('/')
             })
             .catch(error => {
                 setError(error);
             })
 
 
+    }
+    const handleGoogleLogin = () => {
+        createGoogleUser()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                const userData = {name: loggedUser.displayName, email:  loggedUser.email, userImg: loggedUser.photoURL}
+                text(userData)
+                setError("")
+            })
+            .catch(error => {
+                setError(error);
+            })
     }
 
     return (
@@ -73,7 +122,7 @@ const SingUpPage = () => {
                             <p className='font-semibold text-center'>or logIn with</p>
                             <div className='flex justify-center space-x-5 mt-4'>
                                 <button><FaFacebook className='w-8 h-8'></FaFacebook></button>
-                                <button><FaGoogle className='w-8 h-8'></FaGoogle></button>
+                                <button onClick={handleGoogleLogin}><FaGoogle className='w-8 h-8'></FaGoogle></button>
                                 <button> <FaGithub className='w-8 h-8'></FaGithub></button>
                             </div>
                         </div>

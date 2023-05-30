@@ -2,7 +2,6 @@ import React from 'react';
 import { FaTrashAlt, FaEdit } from "react-icons/fa";
 import Swal from 'sweetalert2';
 
-
 const SingleCart = ({ singleCart, refetch }) => {
     console.log(singleCart);
     const { image, name, price, } = singleCart;

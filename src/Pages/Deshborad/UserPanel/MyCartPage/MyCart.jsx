@@ -1,7 +1,9 @@
 import React from 'react';
-import useCart from '../../../Hooks/useCart';
-import Title from '../../SharedComponentsTitle/Title';
-import SingleCart from './SingleCart/SingleCart';
+import SingleCart from '../MyCartPage/SingleCart/SingleCart';
+import useCart from '../../../../Hooks/useCart';
+import Title from '../../../SharedComponentsTitle/Title';
+
+
 
 const MyCart = () => {
     const [cart, refetch] = useCart()
@@ -17,7 +19,7 @@ const MyCart = () => {
             <div className='w-4/5 border-2 h-fit bg-white mx-auto p-10'>
                 <div className='flex justify-between items-center mb-5'> 
                     <h2 className='text-2xl font-bold'>Total items: {cart.length}</h2>
-                    <h2 className='text-2xl font-bold'>Total Price: <span className='text-orange-400'>{totalPrice}</span> $</h2>
+                    <h2 className='text-2xl font-bold'>Total Price: <span className='text-orange-400'>{(totalPrice).toFixed(2)}</span> $</h2>
                     <button className='btn btn-outline'>Pay</button>
                 </div>
                 <div className="w-full">

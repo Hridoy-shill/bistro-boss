@@ -8,54 +8,55 @@ import LoginPage from "../LoginPage/LoginPage";
 import LogAndSingLayout from "../Layouts/LogAndSingLayout";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layouts/DashboardLayout";
-import UserPanel from "../Pages/UserPanel/UserPanel";
-import MyCart from "../Pages/UserPanel/MyCartPage.jsx/MyCart";
+
+import UserPanel from "../Pages/Deshborad/UserPanel/UserPanel";
+import MyCart from "../Pages/Deshborad/UserPanel/MycartPage/MyCart";
 
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element:<MainLayout></MainLayout>,
-        children:[
+        element: <MainLayout></MainLayout>,
+        children: [
             {
-                path:'/',
-                element:<HomePage></HomePage>
+                path: '/',
+                element: <HomePage></HomePage>
             },
             {
-                path:'/ourMenu',
-                element:<OurMenu></OurMenu>
+                path: '/ourMenu',
+                element: <OurMenu></OurMenu>
             },
             {
-                path:'/orders',
-                element:<PrivateRoute><OrderPage></OrderPage></PrivateRoute>
+                path: '/orders',
+                element: <PrivateRoute><OrderPage></OrderPage></PrivateRoute>
             },
         ]
     },
     {
-        path:'/login',
-        element:<LogAndSingLayout></LogAndSingLayout>,
-        children:[
+        path: '/login',
+        element: <LogAndSingLayout></LogAndSingLayout>,
+        children: [
             {
-                path:'/login',
-                element:<LoginPage></LoginPage>
+                path: '/login',
+                element: <LoginPage></LoginPage>
             },
             {
-                path:'singUp',
-                element:<SingUpPage></SingUpPage>
+                path: 'singUp',
+                element: <SingUpPage></SingUpPage>
             }
         ]
     },
     {
-        path:'dashboard',
-        element:<Dashboard></Dashboard>,
-        children:[
+        path: 'dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children: [
             {
-                path:'userPanel',
-                element:<UserPanel></UserPanel>
+                path: 'userPanel',
+                element: <UserPanel></UserPanel>
             },
             {
-                path:'myCart',
-                element:<MyCart></MyCart>
+                path: 'myCart',
+                element: <MyCart></MyCart>
             }
         ]
     }

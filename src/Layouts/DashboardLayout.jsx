@@ -13,9 +13,9 @@ const DashboardLayout = () => {
                 <Outlet></Outlet>
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side custom-drawer">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+                <ul className="menu p-4 w-80 bg-[#D1A054] text-base-content">
                     <li><NavLink to={'/dashboard/userPanel'}><FaHome></FaHome> User Home</NavLink></li>
 
                     <li><NavLink to={'/'}><FaCalendarAlt></FaCalendarAlt> reservation</NavLink></li>
