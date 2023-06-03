@@ -10,21 +10,15 @@ const SingUpPage = () => {
     const navigate = useNavigate()
 
 
-    const text = (saveUser, reset) => {
-        fetch('http://localhost:5000/newUser', {
+    const text = async (saveUser) => {
+        return await fetch('http://localhost:5000/newUser', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(saveUser)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.insertedId && reset) {
-                    reset();
-                }
+        }).then(res => res.json())
 
-            })
     }
 
 
@@ -46,7 +40,7 @@ const SingUpPage = () => {
                 console.log(newCreatedUser);
                 setUser(newCreatedUser)
                 updateUserProfile(name, userImg)
-                    .then(() => {
+                    .then(async () => {
                         const saveUser = { name, email, userImg }
                         // fetch('http://localhost:5000/newUser', {
                         //     method: 'POST',
@@ -61,10 +55,15 @@ const SingUpPage = () => {
                         //             form.reset();
                         //         }
                         //     })
-                        text(saveUser, form.reset)
+                     const res = await text(saveUser,)
+                     if(res.acknowledged){
+                        form.reset()
+                          navigate('/')
+                     }
+
                     })
                 setError('');
-                navigate('/')
+              
             })
             .catch(error => {
                 setError(error);
@@ -74,11 +73,15 @@ const SingUpPage = () => {
     }
     const handleGoogleLogin = () => {
         createGoogleUser()
-            .then(result => {
+            .then(async(result) => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                const userData = {name: loggedUser.displayName, email:  loggedUser.email, userImg: loggedUser.photoURL}
-                text(userData)
+                const userData = { name: loggedUser.displayName, email: loggedUser.email, userImg: loggedUser.photoURL }
+                const res = await text(userData)
+                if(res.acknowledged){
+                   form.reset()
+                }
+
                 setError("")
             })
             .catch(error => {

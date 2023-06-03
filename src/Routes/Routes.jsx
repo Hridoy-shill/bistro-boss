@@ -11,6 +11,8 @@ import Dashboard from "../Layouts/DashboardLayout";
 
 import UserPanel from "../Pages/Deshborad/UserPanel/UserPanel";
 import MyCart from "../Pages/Deshborad/UserPanel/MycartPage/MyCart";
+import AdminPanel from "../Pages/Deshborad/AdminPanel/AdminPanel";
+import AllUsers from "../Pages/Deshborad/AdminPanel/AllUsers/AllUsers";
 
 
 const router = createBrowserRouter([
@@ -55,9 +57,17 @@ const router = createBrowserRouter([
                 element: <UserPanel></UserPanel>
             },
             {
+                path: 'adminPanel',
+                element: <AdminPanel></AdminPanel>
+            },
+            {
                 path: 'myCart',
                 element: <MyCart></MyCart>
-            }
+            },
+            {
+                path: 'allUsers',
+                element: <AllUsers></AllUsers>
+            },
         ]
     }
 ]);
