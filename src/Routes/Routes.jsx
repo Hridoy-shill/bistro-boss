@@ -13,6 +13,8 @@ import UserPanel from "../Pages/Deshborad/UserPanel/UserPanel";
 import MyCart from "../Pages/Deshborad/UserPanel/MycartPage/MyCart";
 import AdminPanel from "../Pages/Deshborad/AdminPanel/AdminPanel";
 import AllUsers from "../Pages/Deshborad/AdminPanel/AllUsers/AllUsers";
+import AddItem from "../Pages/Deshborad/AdminPanel/AddItem/AddItem";
+import AdminRoute from "./AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -66,8 +68,12 @@ const router = createBrowserRouter([
             },
             {
                 path: 'allUsers',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
+            {
+                path: 'addItem',
+                element: <AdminRoute><AddItem></AddItem></AdminRoute>
+            }
         ]
     }
 ]);

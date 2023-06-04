@@ -6,7 +6,7 @@ const useAdmin = () => {
     const {user} = useContext(authContext)
   
     const token = localStorage.getItem('access-token');
-    const { refetch, data: isAdmin } = useQuery({
+    const { refetch, data: isAdmin, isLoading: isAdminLoading } = useQuery({
         queryKey: ['allUsers', user?.email],
         queryFn: async () => {
             
@@ -22,6 +22,6 @@ const useAdmin = () => {
             return data.admin
         }
     })
-    return [refetch, isAdmin]
+    return [refetch, isAdmin, isAdminLoading]
 }
-export default useAdmin
+export default useAdmin;

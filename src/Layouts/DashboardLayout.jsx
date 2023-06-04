@@ -25,7 +25,7 @@ const DashboardLayout = () => {
                             <>
                                 <li><NavLink to={'/dashboard/adminPanel'}><FaHome></FaHome> Admin Home</NavLink></li>
 
-                                <li><NavLink to={'/'}><FaUtensils></FaUtensils> add items</NavLink></li>
+                                <li><NavLink to={'/dashboard/addItem'}><FaUtensils></FaUtensils>add an items</NavLink></li>
 
                                 <li><NavLink to={'/'}><FaBars></FaBars> manage items</NavLink></li>
 
