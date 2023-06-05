@@ -15,6 +15,7 @@ import AdminPanel from "../Pages/Deshborad/AdminPanel/AdminPanel";
 import AllUsers from "../Pages/Deshborad/AdminPanel/AllUsers/AllUsers";
 import AddItem from "../Pages/Deshborad/AdminPanel/AddItem/AddItem";
 import AdminRoute from "./AdminRoute";
+import ManageItems from "../Pages/Deshborad/AdminPanel/ManageItems/ManageItems";
 
 
 const router = createBrowserRouter([
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
             {
                 path: 'addItem',
                 element: <AdminRoute><AddItem></AddItem></AdminRoute>
+            },
+            {
+                path:'manageItems',
+                element:<ManageItems></ManageItems>
             }
         ]
     }
